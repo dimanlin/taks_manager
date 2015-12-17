@@ -2,6 +2,23 @@ class Dashboard::TasksController < Dashboard::DashboardController
 
   def index
     @tasks = current_user.tasks
+
+    respond_to do |format|
+      format.html
+      format.json { render layout: false }
+    end
+  end
+
+  def assign_to_me
+    @task = Task.find(params[:id])
+    @task.assign_to(current_user)
+
+    respond_to do |format|
+      format.html do
+        redirect_to root_path
+      end
+      format.json { render layout: false }
+    end
   end
 
   def edit
@@ -11,9 +28,19 @@ class Dashboard::TasksController < Dashboard::DashboardController
   def update
     @task = Task.find(params[:id])
     if @task.update(task_params)
-      redirect_to dashboard_task_path(@task)
+      respond_to do |format|
+        format.html do
+          redirect_to dashboard_task_path(@task)
+        end
+        format.json { render layout: false }
+      end
     else
-      render action: :edit
+      respond_to do |format|
+        format.html do
+          render action: :edit
+        end
+        format.json { render layout: false }
+      end
     end
   end
 
@@ -28,9 +55,19 @@ class Dashboard::TasksController < Dashboard::DashboardController
   def create
     @task = Task.new(task_params)
     if @task.save
-      redirect_to dashboard_task_path(@task)
+      respond_to do |format|
+        format.html do
+          redirect_to dashboard_task_path(@task)
+        end
+        format.json { render layout: false }
+      end
     else
-      render action: :new
+      respond_to do |format|
+        format.html do
+          render action: :new
+        end
+        format.json { render layout: false }
+      end
     end
   end
 
@@ -39,4 +76,5 @@ class Dashboard::TasksController < Dashboard::DashboardController
   def task_params
     params.require(:task).permit(:name, :description, :state, :user_id)
   end
+
 end

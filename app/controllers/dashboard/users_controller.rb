@@ -7,10 +7,6 @@ class Dashboard::UsersController < Dashboard::DashboardController
   def edit
   end
 
-  def show
-
-  end
-
   def update
     if @user.update(user_params)
       redirect_to dashboard_user_path(@user)
