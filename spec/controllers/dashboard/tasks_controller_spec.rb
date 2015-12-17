@@ -6,13 +6,14 @@ RSpec.describe Dashboard::TasksController, type: :controller do
   let(:user) { FactoryGirl.create(:user)}
 
 
-  before do
-    sign_in user
-  end
+  # before do
+  #
+  # end
 
   describe '.index' do
     context 'request html' do
       before do
+        sign_in user
         @task = FactoryGirl.create(:task, user_id: user.id)
         get :index
       end
@@ -26,7 +27,7 @@ RSpec.describe Dashboard::TasksController, type: :controller do
     context 'request json' do
       before do
         @task = FactoryGirl.create(:task, user_id: user.id)
-        get :index, format: :json
+        get :index, format: :json, token: user.token
       end
 
       it 'respond my tasks' do
@@ -38,6 +39,7 @@ RSpec.describe Dashboard::TasksController, type: :controller do
 
   describe '.edit' do
     before do
+      sign_in user
       @task = FactoryGirl.create(:task, user_id: user.id)
       get :edit, id: @task
     end
@@ -51,6 +53,7 @@ RSpec.describe Dashboard::TasksController, type: :controller do
     context 'success' do
       context 'html request' do
         before do
+          sign_in user
           @task = FactoryGirl.create(:task, user_id: user.id, name: 'name')
         end
 
@@ -64,7 +67,7 @@ RSpec.describe Dashboard::TasksController, type: :controller do
       context 'json request' do
         before do
           @task = FactoryGirl.create(:task, user_id: user.id, name: 'name')
-          post :update, id: @task, task: {name: 'new_name'}, format: :json
+          post :update, id: @task, task: {name: 'new_name'}, format: :json, token: user.token
         end
 
         it 'success' do
@@ -77,6 +80,7 @@ RSpec.describe Dashboard::TasksController, type: :controller do
     context 'fail' do
       context 'html request' do
         before do
+          sign_in user
           @task = FactoryGirl.create(:task, user_id: user.id, name: 'name')
           post :update, id: @task, task: {name: ''}
         end
@@ -90,6 +94,7 @@ RSpec.describe Dashboard::TasksController, type: :controller do
 
   describe '.show' do
     before do
+      sign_in user
       @task = FactoryGirl.create(:task, user_id: user.id)
       get :show, id: @task
     end
@@ -101,6 +106,7 @@ RSpec.describe Dashboard::TasksController, type: :controller do
 
   describe '.new' do
     before do
+      sign_in user
       get :new
     end
 
@@ -114,6 +120,7 @@ RSpec.describe Dashboard::TasksController, type: :controller do
       context 'html request' do
         it 'success' do
           expect do
+            sign_in user
             post :create, task: { name: 'name', description: 'description' }
           end.to change{Task.count}.from(0).to(1)
         end
@@ -121,7 +128,7 @@ RSpec.describe Dashboard::TasksController, type: :controller do
 
       context 'json request' do
         before do
-          post :create, format: :json, task: { name: 'name', description: 'description' }
+          post :create, format: :json, task: { name: 'name', description: 'description' }, token: user.token
         end
 
         it 'success' do
@@ -134,6 +141,7 @@ RSpec.describe Dashboard::TasksController, type: :controller do
     context 'failure' do
       context 'html request' do
         before do
+          sign_in user
           post :create, task: { name: 'name' }
         end
 
@@ -144,7 +152,7 @@ RSpec.describe Dashboard::TasksController, type: :controller do
 
       context 'json request' do
         before do
-          post :create, format: :json, task: { name: 'name' }
+          post :create, format: :json, task: { name: 'name' }, token: user.token
         end
 
         it 'success' do
@@ -158,6 +166,7 @@ RSpec.describe Dashboard::TasksController, type: :controller do
   describe 'assign_to' do
     context 'html request' do
       before do
+        sign_in user
         @task = FactoryGirl.create(:task, state: 'fresh')
       end
 
@@ -171,7 +180,7 @@ RSpec.describe Dashboard::TasksController, type: :controller do
     context 'json request' do
       before do
         @task = FactoryGirl.create(:task, state: 'fresh')
-        post :assign_to_me, id: @task.id, format: :json
+        post :assign_to_me, id: @task.id, format: :json, token: user.token
       end
 
       it 'assign to user' do
