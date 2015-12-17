@@ -1,34 +1,33 @@
 - content_for :seo_title
   - 'Список задач'
 
-  H1
-    | Список задач
-
-  - @tasks.each do |task|
-    .row.task
-      .col-xs-12
-        .row
-          .col-xs-12
-            h2
-              = task.name
-        .row
-          .col-xs-12
-            = task.description
-        .row
-          .col-xs-12
-            b
-              = assigned_to(task)
-        .row
-          .col-xs-4
-            b
-              = I18n.l(task.created_at, format: :long)
-          .col-xs-8
-            b
-              = task.state
-        .row
-          .col-xs-12.text-right
-            - if current_user && task.user.nil?
-              = link_to 'Назначить на себя', '#', class: "btn btn-xs btn-info"
-            = link_to 'Редактировать', '#', class: "btn btn-xs btn-default"
+H1
+  | Список задач
+- @tasks.each do |task|
+  .row.task
+    .col-xs-12
+      .row
+        .col-xs-12
+          h2
+            = task.name
+      .row
+        .col-xs-12
+          = task.description
+      .row
+        .col-xs-12
+          b
+            = assigned_to(task)
+      .row
+        .col-xs-4
+          b
+            = I18n.l(task.created_at, format: :long)
+        .col-xs-8
+          b
+            = task.state
+      .row
+        .col-xs-12.text-right
+          - if current_user && task.user.nil?
+            = link_to 'Назначить на себя', '#', class: "btn btn-xs btn-info"
+          = link_to 'Редактировать', '#', class: "btn btn-xs btn-default"
 
 
