@@ -6,10 +6,11 @@
   h2
     | Регистрация
   = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-    = devise_error_messages!
     .form-group
       = f.label :email
       = f.email_field :email, autofocus: true, class: 'form-control'
+    p.text-danger
+      = resource.errors.full_messages_for(:email).join(', ')
     .form-group
       = f.label :password
       - if @minimum_password_length
@@ -18,9 +19,13 @@
           =' @minimum_password_length
           | символов)
       = f.password_field :password, autocomplete: "off", class: 'form-control'
+    p.text-danger
+      = resource.errors.full_messages_for(:password).join(', ')
     .form-group
       = f.label :password_confirmation
       = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
+    p.text-danger
+      = resource.errors.full_messages_for(:password_confirmation).join(', ')
     = f.submit "Войти", class: 'btn btn-primary'
   = render "devise/shared/links"
 .col-sm-3.hidden-xs

@@ -20,8 +20,13 @@ html
           ul.nav.navbar-nav
             li{class="#{'active' if controller_name == 'welcome'}"}
               = link_to 'Список задач', root_path
+            - if current_user
+              li{class="#{'active' if controller_name == 'users' && current_user.id != params[:id].to_i}"}
+                = link_to 'Пользователи', users_path
           ul.nav.navbar-nav.navbar-right
             - if current_user
+              li{class="#{'active' if controller_name == 'users' && current_user.id == params[:id].to_i}"}
+                = link_to 'Профиль', user_path(current_user)
               li
                 = link_to 'Выйти', destroy_user_session_path, method: :delete
             - else
@@ -30,6 +35,8 @@ html
               li
                 = link_to 'Авторизация', new_user_session_path
 
-    /! /.nav-collapse
     .container
-      = yield
+      .col-sm-3.hidden-xs
+      .col-md-6
+        = yield
+      .col-md-3.hidden-xs

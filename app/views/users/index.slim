@@ -1,0 +1,6 @@
+h1
+  | Пользователи на проекте
+
+- @users.each do |user|
+  p
+    = link_to user.email, user_path(user)
