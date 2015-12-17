@@ -19,5 +19,10 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
-  hello: "Hello world"
+ru:
+  activerecord:
+    attributes:
+      user:
+        remember_me: Запомнить меня
+        password: Пароль
+        password_confirmation: Подтверждение пароля

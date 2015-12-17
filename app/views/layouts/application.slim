@@ -21,10 +21,15 @@ html
             li{class="#{'active' if controller_name == 'welcome'}"}
               = link_to 'Список задач', root_path
           ul.nav.navbar-nav.navbar-right
-            li
-              a href="../navbar/" Регистрация
-            li
-              a href="../navbar-static-top/" Авторизация
+            - if current_user
+              li
+                = link_to 'Выйти', destroy_user_session_path, method: :delete
+            - else
+              li
+                = link_to 'Регистрация', new_user_registration_path
+              li
+                = link_to 'Авторизация', new_user_session_path
+
     /! /.nav-collapse
     .container
       = yield

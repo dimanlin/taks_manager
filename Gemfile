@@ -27,6 +27,8 @@ gem 'slim-rails'
 gem 'twitter-bootstrap-rails'
 gem 'quiet_assets'
 gem "less-rails"
+gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
+gem 'devise'
 
 
 
@@ -45,7 +47,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'ffaker'
-  gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 end
 
 group :development do

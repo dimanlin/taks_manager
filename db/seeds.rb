@@ -1,7 +1,7 @@
 User.destroy_all
 
 3.times do |index|
-  User.create(email: 'example_1@gmail.com', password: 'root0000', password_confirmation: 'root0000')
+  User.create(email: "example_#{index}@gmail.com", password: 'root0000', password_confirmation: 'root0000')
 end
 
 User.all.each do |user|
