@@ -26,3 +26,7 @@ ru:
         remember_me: Запомнить меня
         password: Пароль
         password_confirmation: Подтверждение пароля
+      task:
+        name: Название
+        description: Описание
+        state: Состояние

@@ -1,0 +1,20 @@
+= form_for @task do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+  p.text-danger
+    = @task.errors.full_messages_for(:name).join(', ')
+  .form-group
+    = f.label :description
+    = f.text_area :description, class: 'form-control'
+  p.text-danger
+    = @task.errors.full_messages_for(:description).join(', ')
+  .form-group
+    = f.label :state
+    = select_tag "task[state]", options_for_select(Task.states.keys, @task.state), class: 'form-control'
+  .form-group
+    = f.label :user
+    = f.select :user_id, options_from_collection_for_select(User.all, 'id', 'email', @task.user ? @task.user.id : nil), {include_blank: true}, class: 'form-control'
+  p.text-danger
+    = @task.errors.full_messages_for(:user).join(', ')
+  = f.submit @task.new_record? ? 'Сохранить' : 'Обновить', class: 'btn btn-primary'

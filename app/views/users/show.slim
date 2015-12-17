@@ -15,6 +15,7 @@ p
   ' Число назначенных тасков:
   = @user.tasks.count
 
-= link_to 'Редактировать профаил', edit_user_path(current_user)
-br
-= link_to 'Сменить пароль', edit_password_user_path(current_user)
+- if current_user == @user
+  = link_to 'Редактировать профаил', edit_user_path(current_user)
+  br
+  = link_to 'Сменить пароль', edit_password_user_path(current_user)

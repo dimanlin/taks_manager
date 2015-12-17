@@ -1,0 +1,23 @@
+h1
+  | Тикет
+
+label
+  ' Название:
+p
+  = @task.name
+label
+  ' Описание:
+p
+  = @task.description
+label
+  ' Статус
+p
+  = @task.state
+
+- if @task.user
+  label
+    ' Назначина:
+  p
+    = @task.user.email
+
+= link_to 'Редаткировать', edit_task_path(@task)
