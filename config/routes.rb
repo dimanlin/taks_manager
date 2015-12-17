@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       member do
         post :assign_to_me
       end
+      resources :attachments, only: :destroy
     end
   end
 

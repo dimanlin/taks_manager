@@ -20,4 +20,9 @@ p
   p
     = @task.user.email
 
+- @task.attachments.each do |attach|
+  = link_to attach.original_file, attach.file.url
+  = link_to 'Удалить', dashboard_task_attachment_path(task_id: @task, id: attach.id), method: :delete, data: {confirm: 'Вы уверенны?'}, class: 'btn btn-xs btn-primary'
+  br
+
 = link_to 'Редаткировать', edit_dashboard_task_path(@task)
