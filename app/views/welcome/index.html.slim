@@ -3,6 +3,10 @@
 
 H1
   | Список задач
+.row
+  .col-xs-12.text-right
+    = link_to 'Новая задача', new_task_path, class: 'btn btn-primary'
+
 - @tasks.each do |task|
   .row.task
     .col-xs-12
@@ -16,7 +20,11 @@ H1
       .row
         .col-xs-12
           b
-            = assigned_to(task)
+            - if task.user
+              ' Назначенна:
+              = link_to task.user.email, user_path(task.user.id)
+            - else
+              | Не назначенна
       .row
         .col-xs-4
           b
@@ -27,7 +35,7 @@ H1
       .row
         .col-xs-12.text-right
           - if current_user && task.user.nil?
-            = link_to 'Назначить на себя', '#', class: "btn btn-xs btn-info"
-          = link_to 'Редактировать', '#', class: "btn btn-xs btn-default"
+            = link_to 'Назначить на себя', assign_to_me_task_path(task), class: 'btn btn-xs btn-info', method: :post
+          = link_to 'Редактировать', edit_task_path(task), class: "btn btn-xs btn-default"
 
 
