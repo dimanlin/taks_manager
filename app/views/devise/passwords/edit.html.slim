@@ -8,9 +8,9 @@ h2
     br
     - if @minimum_password_length
       em
-        | (
+        | (Минимум
         = @minimum_password_length
-        |  characters minimum)
+        | символов)
     br
     = f.password_field :password, autofocus: true, autocomplete: "off"
   .field

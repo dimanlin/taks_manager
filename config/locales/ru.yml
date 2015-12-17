@@ -24,3 +24,5 @@ ru:
     attributes:
       user:
         remember_me: Запомнить меня
+        password: Пароль
+        password_confirmation: Подтверждение пароля
