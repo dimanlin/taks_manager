@@ -2,11 +2,6 @@ Rails.application.routes.draw do
   devise_for :users
   get 'welcome/index'
   resources :users, only: [:index, :show]
-  resources :tasks do
-    member do
-      post :assign_to_me
-    end
-  end
 
   namespace :dashboard do
     resources :users do
@@ -15,7 +10,11 @@ Rails.application.routes.draw do
         post :update_password
       end
     end
-    resources :tasks
+    resources :tasks do
+      member do
+        post :assign_to_me
+      end
+    end
   end
 
   root 'welcome#index'

@@ -1,0 +1,1 @@
+json.task @task.attributes.merge({errors: @task.errors.messages})
