@@ -1,0 +1,21 @@
+- content_for :seo_title
+  - 'Авторизация'
+
+.col-sm-3.hidden-xs
+.col-md-6
+  h2
+    | Авторизация
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .form-group
+      = f.label :email
+      = f.email_field :email, autofocus: true, class: 'form-control'
+    .form-group
+      = f.label :password
+      = f.password_field :password, autocomplete: "off", class: 'form-control'
+    - if devise_mapping.rememberable?
+      .field
+        = f.check_box :remember_me
+        = f.label :remember_me
+    = f.submit "Войти", class: 'btn btn-primary'
+  = render "devise/shared/links"
+.col-sm-3.hidden-xs

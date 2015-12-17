@@ -22,9 +22,9 @@ html
               = link_to 'Список задач', root_path
           ul.nav.navbar-nav.navbar-right
             li
-              a href="../navbar/" Регистрация
+              = link_to 'Регистрация', new_user_registration_path
             li
-              a href="../navbar-static-top/" Авторизация
+              = link_to 'Авторизация', new_user_session_path
     /! /.nav-collapse
     .container
       = yield
