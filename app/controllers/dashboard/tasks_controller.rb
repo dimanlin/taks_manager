@@ -23,6 +23,7 @@ class Dashboard::TasksController < Dashboard::DashboardController
 
   def edit
     @task = Task.find(params[:id])
+    @task.attachments
   end
 
   def update
@@ -50,6 +51,7 @@ class Dashboard::TasksController < Dashboard::DashboardController
 
   def new
     @task = Task.new
+    @task.attachments.build
   end
 
   def create
@@ -74,7 +76,7 @@ class Dashboard::TasksController < Dashboard::DashboardController
   private
 
   def task_params
-    params.require(:task).permit(:name, :description, :state, :user_id)
+    params.require(:task).permit(:name, :description, :state, :user_id, attachments_attributes: :file)
   end
 
 end
