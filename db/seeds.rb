@@ -9,3 +9,5 @@ User.all.each do |user|
     user.tasks.create(state: User.states.keys.sample, name: "task_name_#{index}", description: FFaker::Lorem.paragraph)
   end
 end
+
+Task.create(state: User.states.keys.sample, name: "task_name_with_out_user", description: FFaker::Lorem.paragraph)

@@ -16,13 +16,17 @@
           .col-xs-12
             = task.description
         .row
+          .col-xs-12
+            b
+              = assigned_to(task)
+        .row
           .col-xs-4
             b
               = I18n.l(task.created_at, format: :long)
           .col-xs-2
             b
               = task.state
-          .col-xs-6.text-right
+          .col-xs-4.text-right
             = link_to 'Редактировать', '#', class: "btn btn-primary"
             = link_to 'Удалить', '#', class: "btn btn-primary"
 
