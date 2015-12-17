@@ -4,7 +4,7 @@
 h1
   | Редактирование профайла
 
-= form_for @user do |f|
+= form_for [:dashboard, @user] do |f|
   .form-group
     = f.label :email
     = f.email_field :email, class: 'form-control'
