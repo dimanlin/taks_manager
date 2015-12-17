@@ -29,4 +29,13 @@ RSpec.describe Task, type: :model do
       end
     end
   end
+
+  describe '.assign_to' do
+    let(:task) { FactoryGirl.create(:task) }
+    it 'success' do
+      expect do
+        task.assign_to(user)
+      end.to change{task.reload.user_id}.from(nil).to(user.id)
+    end
+  end
 end
