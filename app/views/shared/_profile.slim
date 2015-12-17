@@ -1,0 +1,12 @@
+- content_for :seo_title
+  | Профаил пользователя
+
+h1
+  ' Профаил пользователя
+
+p
+  | Email:
+  = @user.email
+p
+  ' Число назначенных тасков:
+  = @user.tasks.count

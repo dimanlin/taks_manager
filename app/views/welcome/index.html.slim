@@ -3,39 +3,4 @@
 
 H1
   | Список задач
-.row
-  .col-xs-12.text-right
-    = link_to 'Новая задача', new_task_path, class: 'btn btn-primary'
-
-- @tasks.each do |task|
-  .row.task
-    .col-xs-12
-      .row
-        .col-xs-12
-          h2
-            = task.name
-      .row
-        .col-xs-12
-          = task.description
-      .row
-        .col-xs-12
-          b
-            - if task.user
-              ' Назначенна:
-              = link_to task.user.email, user_path(task.user.id)
-            - else
-              | Не назначенна
-      .row
-        .col-xs-4
-          b
-            = I18n.l(task.created_at, format: :long)
-        .col-xs-8
-          b
-            = task.state
-      .row
-        .col-xs-12.text-right
-          - if current_user && task.user.nil?
-            = link_to 'Назначить на себя', assign_to_me_task_path(task), class: 'btn btn-xs btn-info', method: :post
-          = link_to 'Редактировать', edit_task_path(task), class: "btn btn-xs btn-default"
-
-
+= render partial: 'shared/list_tasks'

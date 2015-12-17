@@ -1,0 +1,6 @@
+= render partial: 'shared/profile'
+
+- if current_user == @user
+  = link_to 'Редактировать профаил', edit_dashboard_user_path(current_user)
+  br
+  = link_to 'Сменить пароль', edit_password_dashboard_user_path(current_user)
