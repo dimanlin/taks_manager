@@ -23,6 +23,12 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'therubyracer'
+gem 'slim-rails'
+gem 'twitter-bootstrap-rails'
+gem 'quiet_assets'
+gem "less-rails"
+
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -39,6 +45,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'ffaker'
+  gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 end
 
 group :development do

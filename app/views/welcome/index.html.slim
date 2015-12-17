@@ -1,0 +1,30 @@
+- content_for :seo_title
+  - 'Список задач'
+
+.col-sm-3.hidden-xs
+.col-md-6
+  H1
+    | Список задач
+
+  - @tasks.each do |task|
+    .row.task
+      .col-xs-12
+        .row
+          .col-xs-12
+            = task.name
+        .row
+          .col-xs-12
+            = task.description
+        .row
+          .col-xs-4
+            b
+              = I18n.l(task.created_at, format: :long)
+          .col-xs-2
+            b
+              = task.state
+          .col-xs-6.text-right
+            = link_to 'Редактировать', '#', class: "btn btn-primary"
+            = link_to 'Удалить', '#', class: "btn btn-primary"
+
+.col-sm-3.hidden-xs
+

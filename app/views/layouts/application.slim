@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    title
+      = yield :seo_title
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    nav.navbar.navbar-default.navbar-fixed-top
+      .container
+        .navbar-header
+          button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button"
+            span.sr-only Task manager
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand href="#"  Task manager
+        #navbar.navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li{class="#{'active' if controller_name == 'welcome'}"}
+              = link_to 'Список задач', root_path
+          ul.nav.navbar-nav.navbar-right
+            li
+              a href="../navbar/" Регистрация
+            li
+              a href="../navbar-static-top/" Авторизация
+    /! /.nav-collapse
+    .container
+      = yield
