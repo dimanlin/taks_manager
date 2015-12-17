@@ -30,6 +30,7 @@ gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 gem 'devise'
 gem 'carrierwave'
 gem "nested_form"
+gem 'ffaker'
 
 
 
@@ -47,7 +48,6 @@ group :development, :test do
   gem 'factory_girl_rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'ffaker'
 end
 
 group :development do
