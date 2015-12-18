@@ -1,4 +1,4 @@
-= nested_form_for [:dashboard, @task] do |f|
+= form_for [:dashboard, @task] do |f|
   .form-group
     = f.label :name
     = f.text_field :name, class: 'form-control'
@@ -17,10 +17,12 @@
     = f.select :user_id, options_from_collection_for_select(User.all, 'id', 'email', @task.user ? @task.user.id : nil), {include_blank: true}, class: 'form-control'
   p.text-danger
     = @task.errors.full_messages_for(:user).join(', ')
-  = f.fields_for :attachments do |file_form|
-    = file_form.file_field :file
-    = file_form.link_to_remove 'Удалить фаил'
-  = f.link_to_add 'Добавить файловое поле', :attachments
+  h3 Files
+  #tasks
+    = f.fields_for :attachments do |file_form|
+      = render 'attachment_fields', f: file_form
+    .links
+      = link_to_add_association 'Добавить фаил', f, :attachments
   br
 
   = f.submit @task.new_record? ? 'Сохранить' : 'Обновить', class: 'btn btn-primary'
