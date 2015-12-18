@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
       return false
     end
 
-    reset_password!(new_password, confirm_password)
+    reset_password(new_password, confirm_password)
   end
 
   private
