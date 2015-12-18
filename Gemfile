@@ -31,6 +31,9 @@ gem 'devise'
 gem 'carrierwave'
 gem "nested_form"
 gem 'ffaker'
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
+gem 'kaminari-i18n'
 
 
 
