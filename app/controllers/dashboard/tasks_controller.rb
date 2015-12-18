@@ -4,7 +4,9 @@ class Dashboard::TasksController < Dashboard::DashboardController
     @tasks = current_user.tasks
 
     respond_to do |format|
-      format.html
+      format.html do
+        @tasks = @tasks.page(params[:page]).per(10)
+      end
       format.json { render layout: false }
     end
   end
