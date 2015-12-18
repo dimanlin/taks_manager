@@ -1,3 +1,12 @@
+.jumbotron
+  h2
+    | API
+
+  p
+    | Для авторизации запроса, используйте token=
+    = current_user.token
+    
+
 = render partial: 'shared/profile'
 
 - if current_user == @user
