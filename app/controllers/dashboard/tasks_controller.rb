@@ -1,5 +1,6 @@
 class Dashboard::TasksController < Dashboard::DashboardController
 
+
   def index
     @tasks = current_user.tasks
 
@@ -48,6 +49,14 @@ class Dashboard::TasksController < Dashboard::DashboardController
 
   def show
     @task = Task.find(params[:id])
+    respond_to do |format|
+      format.html
+      # FIXME
+      # Looks like a bug, if I use:
+      # format.json { render layout: false }
+      # rails still render show.slim, but we have show.jbuilder... Need more time for resolve that..
+      format.json { render json: {task: @task}.to_json}
+    end
   end
 
   def new
@@ -79,5 +88,7 @@ class Dashboard::TasksController < Dashboard::DashboardController
   def task_params
     params.require(:task).permit(:name, :description, :state, :user_id, attachments_attributes: [:id, :file, :_destroy])
   end
+
+  private
 
 end

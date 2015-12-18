@@ -32,6 +32,8 @@
         .col-xs-12.text-right
           - if current_user && task.user.nil?
             = link_to 'Назначить на себя', assign_to_me_dashboard_task_path(task), class: 'btn btn-xs btn-info', method: :post
+          - if current_user
             = link_to 'Редактировать', edit_dashboard_task_path(task), class: "btn btn-xs btn-default"
+            = link_to 'Показать', dashboard_task_path(task), class: "btn btn-xs btn-default"
 
 

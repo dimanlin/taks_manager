@@ -93,14 +93,27 @@ RSpec.describe Dashboard::TasksController, type: :controller do
   end
 
   describe '.show' do
-    before do
-      sign_in user
-      @task = FactoryGirl.create(:task, user_id: user.id)
-      get :show, id: @task
+    context 'html response' do
+      before do
+        sign_in user
+        @task = FactoryGirl.create(:task, user_id: user.id)
+        get :show, id: @task.id
+      end
+
+      it 'success' do
+        expect(response).to be_success
+      end
     end
 
-    it 'success' do
-      expect(response).to be_success
+    context 'json response' do
+      before do
+        task = FactoryGirl.create(:task, user_id: user.id)
+        get :show, id: task.id, token: user.token, format: :json
+      end
+
+      it 'success' do
+        expect(JSON.parse(response.body)['task'].present?).to be true
+      end
     end
   end
 
@@ -163,7 +176,7 @@ RSpec.describe Dashboard::TasksController, type: :controller do
     end
   end
 
-  describe 'assign_to' do
+  describe '.assign_to' do
     context 'html request' do
       before do
         sign_in user

@@ -1,0 +1,90 @@
+h1
+  | API
+
+p
+  | Для авторизации запроса, используйте token=
+  = current_user.token
+p
+  | Обратите внимание, что если вы делаете запрос на создание объекта, ответ будет содержать ваш объект с дополнительным атрибутом errors. Именно по нему вы должны ориентироваться, произошла ли ошибка создания или нет. Если да, errors покажет вам ошибку для кажного поля.
+
+h2 List
+table.table
+  thead
+    tr
+      th
+        | Метод
+      th
+        | URL
+  tbody
+    tr
+      td
+        | GET
+      td
+        | /dashboard/tasks.json?token=my_token
+
+h2 Show
+table.table
+  thead
+    tr
+      th
+        | Метод
+      th
+        | URL
+  tbody
+    tr
+      td
+        | GET
+      td
+        | /dashboard/tasks/:id.json?token=my_token
+
+h2 Create
+table.table
+  thead
+    tr
+      th
+        | Метод
+      th
+        | URL
+  tbody
+    tr
+      td
+        | POST
+      td
+        | /dashboard/tasks.json?token=my_token
+    tr
+      td{colspan=2}
+        | task: { name: 'name', description: 'description', state: 'state', user_id: 1 }
+
+h2 Update
+table.table
+  thead
+    tr
+      th
+        | Метод
+      th
+        | URL
+  tbody
+    tr
+      td
+        | PUT
+      td
+        | /dashboard/tasks/:id.json?token=my_token
+    tr
+      td{colspan=2}
+        | task: { name: 'name', description: 'description', state: 'state', user_id: 1 }
+
+h2 Assign to me
+table.table
+  thead
+    tr
+      th
+        | Метод
+      th
+        | URL
+  tbody
+    tr
+      td
+        | POST
+      td
+        | /dashboard/tasks/:id/assign_to_me?token=my_token
+

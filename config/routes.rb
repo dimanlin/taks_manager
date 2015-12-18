@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
 
   namespace :dashboard do
+    resources :api, only: :index
     resources :users do
       member do
         get :edit_password
