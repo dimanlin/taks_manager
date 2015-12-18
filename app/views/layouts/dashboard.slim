@@ -22,6 +22,8 @@ html
               = link_to 'Мои задачи', dashboard_tasks_path
             li{class="#{'active' if controller_name == 'users'}"}
               = link_to 'Профиль', dashboard_user_path(current_user)
+            li{class="#{'active' if controller_name == 'api'}"}
+              = link_to 'API', dashboard_api_index_path
 
           ul.nav.navbar-nav.navbar-right
             - if current_user

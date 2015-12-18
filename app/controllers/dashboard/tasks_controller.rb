@@ -48,6 +48,12 @@ class Dashboard::TasksController < Dashboard::DashboardController
 
   def show
     @task = Task.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json do
+        render layout: false
+      end
+    end
   end
 
   def new

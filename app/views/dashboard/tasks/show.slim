@@ -1,3 +1,4 @@
+- puts '3333333333333'
 h1
   | Тикет
 
@@ -19,23 +20,24 @@ p
     ' Назначина:
   p
     = @task.user.email
-table.table.table-striped
-  thead
-    tr
-      th
-        | Имя файла
-      th
-        | Действие
-      th
-        | Размер
-  - @task.attachments.each do |attach|
-    tr
-      td
-        = link_to attach.original_file, attach.file.url
-      td
-        = link_to 'Удалить', dashboard_task_attachment_path(task_id: @task, id: attach.id), method: :delete, data: {confirm: 'Вы уверенны?'}, class: 'btn btn-xs btn-primary'
-      td
-        = attach.file_size
+- if @task.attachments.present?
+  table.table.table-striped
+    thead
+      tr
+        th
+          | Имя файла
+        th
+          | Действие
+        th
+          | Размер
+    - @task.attachments.each do |attach|
+      tr
+        td
+          = link_to attach.original_file, attach.file.url
+        td
+          = link_to 'Удалить', dashboard_task_attachment_path(task_id: @task, id: attach.id), method: :delete, data: {confirm: 'Вы уверенны?'}, class: 'btn btn-xs btn-primary'
+        td
+          = attach.file_size
 
 
 = link_to 'Редаткировать', edit_dashboard_task_path(@task)
