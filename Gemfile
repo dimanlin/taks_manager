@@ -29,7 +29,7 @@ gem "less-rails"
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 gem 'devise'
 gem 'carrierwave'
-gem "nested_form"
+gem "cocoon"
 gem 'ffaker'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
